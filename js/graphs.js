@@ -242,7 +242,7 @@ function drawXPProgressGraph(transactions) {
 
     // Filter XP transactions and sort by date
     const xpData = transactions
-    .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('/piscine-js/'))
+    .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('/piscine-js/') && !t.path.includes('/piscine-rust/'))
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
 console.log(xpData);
