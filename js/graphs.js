@@ -70,7 +70,7 @@ function drawXPByProjectGraph(transactions) {
     const width = 900;
     const height = 400;
     const padding = { top: 40, right: 40, bottom: 100, left: 60 };
-    const piscineRegex = /^\/piscine[^/]+\/$/;
+    
     
     // Filter and group XP by project
     const projectXP = transactions
@@ -241,7 +241,7 @@ function drawXPProgressGraph(transactions) {
     const width = 900;
     const height = 400;
     const padding = { top: 40, right: 60, bottom: 60, left: 80 };
-    const piscineRegex = /^\/piscine[^/]+\/$/;
+   
     
 
     // Filter XP transactions and sort by date
