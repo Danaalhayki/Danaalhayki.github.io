@@ -73,9 +73,13 @@ function drawXPByProjectGraph(transactions) {
     
     
     // Filter and group XP by project
-    const projectXP = transactions
-        
-        .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('piscine'))
+    const regex = /\/piscine-[^/]+\//; // Matches "/piscine-<anything>/" anywhere in the path
+
+const projectXP = transactions
+    .filter(t => 
+        t.type === 'xp' &&
+        t.path.includes('bh-module') &&
+        !regex.test(t.path))
         .reduce((acc, t) => {
             try {
                 const pathParts = t.path.split('/');
@@ -242,12 +246,21 @@ function drawXPProgressGraph(transactions) {
     const height = 400;
     const padding = { top: 40, right: 60, bottom: 60, left: 80 };
    
-    
+    const regex = /\/piscine-[^/]+\//; // Matches "/piscine-<anything>/" anywhere in the path
 
     // Filter XP transactions and sort by date
     const xpData = transactions
-    .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('piscine'))
-    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        .filter(t => {
+            console.log("Checking path:", t.path); // Debugging: See which paths are being checked
+            console.log("Regex match:", regex.test(t.path)); // Debugging: See if regex matches
+    
+            return (
+                t.type === 'xp' &&
+                t.path.includes('bh-module') &&
+                !regex.test(t.path) // Exclude any path that contains "/piscine-<something>/"
+            );
+        })
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
 console.log(xpData);
     if (xpData.length === 0) {
