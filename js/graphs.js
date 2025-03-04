@@ -75,7 +75,7 @@ function drawXPByProjectGraph(transactions) {
     // Filter and group XP by project
     const projectXP = transactions
         
-        .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes(piscineRegex))
+        .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('piscine'))
         .reduce((acc, t) => {
             try {
                 const pathParts = t.path.split('/');
@@ -246,7 +246,7 @@ function drawXPProgressGraph(transactions) {
 
     // Filter XP transactions and sort by date
     const xpData = transactions
-    .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes(piscineRegex))
+    .filter(t => t.type === 'xp' && t.path.includes('bh-module') && !t.path.includes('piscine'))
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
 console.log(xpData);
