@@ -70,8 +70,7 @@ function drawXPByProjectGraph(transactions) {
     const width = 900;
     const height = 400;
     const padding = { top: 40, right: 40, bottom: 100, left: 60 };
-    
-    
+
     // Filter and group XP by project
     const regex = /\/piscine-[^/]+\//; // Matches "/piscine-<anything>/" anywhere in the path
 
@@ -261,7 +260,9 @@ function drawXPProgressGraph(transactions) {
             );
         })
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-
+    
+    console.log("Filtered XP Data:", xpData);
+    
 console.log(xpData);
     if (xpData.length === 0) {
         container.innerHTML += '<p>No XP progress data available.</p>';
